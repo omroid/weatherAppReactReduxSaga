@@ -1,0 +1,1 @@
+export const LOAD_LOCAL_STORAGE = 'LOAD_LOCAL_STORAGE'

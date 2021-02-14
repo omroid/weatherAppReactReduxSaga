@@ -1,0 +1,2 @@
+export const SET_IS_FAVORITE_PAGE = 'SET_IS_FAVORITE_PAGE'
+

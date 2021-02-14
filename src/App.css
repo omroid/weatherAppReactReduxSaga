@@ -1,38 +1,235 @@
-.App {
-  text-align: center;
+:root {
+  --bg: #f4f6f8;
+  --White: hsl(0, 0%, 100%);
+  --Dark_desaturated_blue: hsl(236, 21%, 26%);
+  --Very_dark_blue: hsl(235, 16%, 14%);
+  --Very_dark_mostly_black_blue: hsl(234, 17%, 12%);
+  --blueviolet: blueviolet;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  /* font-family: 'Karla', sans-serif; */
+  background-color: var(--bg);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar {
+  background-color: var(--blueviolet);
+  border-radius: 0px 0px 0px 50px;
+  height: 100px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.navbar a, .navbar p {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar a {
+  font-weight: 600;
+  font-size: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.navbar p {
+  font-weight: 600;
+  font-size: 16px;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.toogleDiv {
+  display: flex;
+  flex-direction: row;
+  margin-top: 16px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.searchDiv {
+  margin-top: 10px;
+  width: 70%;
+  border-radius: 6px;
+  background-color: white;
+  padding: 10px;
+  position: relative;
+  bottom: 30px;
+}
+
+.txtSearch {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 80%;
+}
+
+.icon-glass {
+  margin-top: 10px;
+}
+
+.locationIcon {
+  width: 30px;
+  height: 30px;
+}
+
+.iconLocationDiv {
+  padding: 5px;
+}
+
+.btn {
+  background-color: var(--blueviolet);
+  border-color: var(--blueviolet);
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  height: 48px;
+}
+
+.btn-danger ,.btn-success {
+  border-radius: 5px;
+  cursor: pointer;
+  width: 80%;
+}
+
+.btn-primary {
+  background-color: var(--blueviolet);
+  border-radius: 5px;
+  cursor: pointer;
+  width: 80%;
+}
+
+.btn-danger {
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.WeatherViewDiv {
+  background-color: white;
+  width: 80%;
+  text-align: center;
+  margin-top: 5px;
+  position: relative;
+  bottom: 20px;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.WeatherViewDiv span {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.divFavorite {
+  margin-top: 30px;
+}
+
+.btn:hover {
+  opacity: 0.6;
+  color: white;
+}
+
+.locationIconA {
+  cursor: pointer;
+}
+
+.locationIconA:hover {
+  opacity: 0.6;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 19px;
+  width: 19px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(32px);
+  -ms-transform: translateX(32px);
+  transform: translateX(32px);
+}
+
+/* Rounded sliders */
+
+.slider.round {
+  border-radius: 34px;
+  height: 28px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.colNavbar {
+  padding: 0px;
+}
+
+@media screen and (max-width: 576px) {
+  .navbar {
+    display: flex;
+    justify-content: center;
+    border-radius: 0px;
   }
-  to {
-    transform: rotate(360deg);
+  .toogleDiv {
+    margin-top: 0px;
+  }
+  .searchDiv {
+    position: static;
+    width: 100%;
+    margin: 0px;
+  }
+  .colSearch {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-bottom: 0px;
+  }
+  .WeatherViewDiv {
+    position: static;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .locationIcon {
+    width: 20px;
+    height: 20px;
   }
 }
