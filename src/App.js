@@ -6,10 +6,7 @@ import Header from "./components/headerComponent";
 import Home from "./components/homeComponent";
 import { connect } from 'react-redux';
 import {setIsFavoritePage} from "./Redux/index";
-import WeatherView  from "./components/weatherViewComponent";
-import dataFiveDaysWeather from "./Models/dataFiveDaysWeather.json";
-import dataCurrentWeather from "./Models/dataCurrentWeather.json";
-import  dataLocation  from "./Models/dataLocation.json";
+
 
 
 

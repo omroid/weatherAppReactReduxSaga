@@ -8,23 +8,14 @@ import { fetchDataFavoriteWeatherSaga } from "../Redux/index";
 
 
 class favorite extends Component {
-    constructor(props) {
-        super(props);
-    
-      }
-    
-    
-    
+
       componentDidMount() {
       
-        Object.keys(this.props.favoriteData).map((key) => {
-            if (this.props.favoriteData[key]!=undefined) {
+        Object.keys(this.props.favoriteData).forEach((key) => {
+            if (this.props.favoriteData[key]!==undefined) {
             this.props.fetchDataFavoriteWeatherSaga("fetchDataFavoriteWeather",key)
             }
         });
-
-
-  
       }
     
     
@@ -37,8 +28,8 @@ class favorite extends Component {
                             Object.keys(this.props.favoriteData).map((key,index) => {
 
                                 return (
-                                    this.props.favoriteData[key] != undefined && this.props.favoriteData[key].fetchDataFavoriteWeather!=undefined ?
-                                        <div className="col-sm-4" key={index}>
+                                    this.props.favoriteData[key] !== undefined && this.props.favoriteData[key].fetchDataFavoriteWeather!==undefined ?
+                                        <div className="col-sm-4 favoriteDataDiv" key={index}>
                                             <WeatherView  key={index} dataLocation={this.props.favoriteData[key].dataLocation}
                                                 dataCurrentDay={this.props.favoriteData[key].fetchDataFavoriteWeather[0]}
                                                 favoriteData={this.props.favoriteData} addToFavoriteList={this.props.addToFavoriteList} removeFromFavoriteList={this.props.removeFromFavoriteList}

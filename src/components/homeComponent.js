@@ -4,23 +4,20 @@ import { connect } from 'react-redux';
 import { fatchDataNextFiveDaysSaga } from "../Redux/index";
 import { fatchDataForAutoCompletionSaga } from "../Redux/index";
 import { fatchDataCurrentDaySaga } from "../Redux/index";
-
 import { setIsLoadFirstTime } from "../Redux/index";
 import { setTxtSearch } from "../Redux/index";
 import { setSelectedDataIndex } from "../Redux/index";
 import { setDataLocation } from "../Redux/index";
 import { fatchDefaultSaga } from "../Redux/index";
 import { fatchGeoSaga } from "../Redux/index";
-
 import { removeFromFavoriteList } from "../Redux/index";
 import { addToFavoriteList } from "../Redux/index";
-
 import WeatherView from "../components/weatherViewComponent";
 import SearchView from "./searchComponent";
 import { fetchDataFailure } from '../Redux/Home/homeActions';
-// import dataFiveDaysWeather from "../Models/dataFiveDaysWeather.json";
-// import dataCurrentWeather from "../Models/dataCurrentWeather.json";
-// import config from "../config/config.json";
+import { fatchAllWeatherDataSaga } from "../Redux/index";
+
+
 
 class homeComponent extends Component {
   constructor(props) {
@@ -45,21 +42,18 @@ class homeComponent extends Component {
         <SearchView txtSearch={this.props.txtSearch} setTxtSearch={this.props.setTxtSearch} fatchDataForAutoCompletionSaga={this.props.fatchDataForAutoCompletionSaga}
           setSelectedDataIndex={this.props.setSelectedDataIndex} dataAutoCompletion={this.props.dataAutoCompletion} selectedDataIndex={this.props.selectedDataIndex}
           fatchDataCurrentDaySaga={this.props.fatchDataCurrentDaySaga} fatchDataNextFiveDaysSaga={this.props.fatchDataNextFiveDaysSaga} setDataLocation={this.props.setDataLocation}
-          fatchGeoSaga={this.props.fatchGeoSaga}
+          fatchGeoSaga={this.props.fatchGeoSaga} fatchAllWeatherDataSaga={this.props.fatchAllWeatherDataSaga}
         />
 
         {
-
-
-
-          this.props.dataLocation != null &&
-            this.props.dataFiveDaysWeather != null &&
-            this.props.dataCurrentDay != null && this.props.isLoading == false
-            ?
-            <WeatherView dataFiveDaysWeather={this.props.dataFiveDaysWeather} dataLocation={this.props.dataLocation} dataCurrentDay={this.props.dataCurrentDay}
-              favoriteData={this.props.favoriteData} addToFavoriteList={this.props.addToFavoriteList} removeFromFavoriteList={this.props.removeFromFavoriteList}
-            />
-            : this.props.isLoading === true ? <Loading /> : <div></div>
+          (this.props.isLoading === true) && ((this.props.selectedDataIndex !== -1)||this.props.isGeoOrDefult===true)? <Loading /> :
+            this.props.dataLocation != null &&
+              this.props.dataFiveDaysWeather != null &&
+              this.props.dataCurrentDay != null
+              ?
+              <WeatherView dataFiveDaysWeather={this.props.dataFiveDaysWeather} dataLocation={this.props.dataLocation} dataCurrentDay={this.props.dataCurrentDay}
+                favoriteData={this.props.favoriteData} addToFavoriteList={this.props.addToFavoriteList} removeFromFavoriteList={this.props.removeFromFavoriteList}
+              />:<></>
         }
 
       </div>
@@ -80,12 +74,15 @@ const mapStateToProps = state => {
     isLoading: state.Home.loading,
     inProcess: state.Home.inProcess,
     favoriteData: { ...state.Favorite.favoriteData },
+    isGeoOrDefult:state.Home.isGeoOrDefult
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fatchDataForAutoCompletionSaga: (quary) => { dispatch(fatchDataForAutoCompletionSaga(quary)) },
+    fatchDataForAutoCompletionSaga: (quary) => {
+      dispatch(fatchDataForAutoCompletionSaga(quary))
+    },
     fatchDataNextFiveDaysSaga: (locationkey) => { dispatch(fatchDataNextFiveDaysSaga(locationkey)) },
     fatchDataCurrentDaySaga: (locationkey) => { dispatch(fatchDataCurrentDaySaga(locationkey)) },
     setIsLoadFirstTime: () => { dispatch(setIsLoadFirstTime()) },
@@ -94,15 +91,16 @@ const mapDispatchToProps = dispatch => {
     setDataLocation: (data) => { dispatch(setDataLocation(data)) },
     addToFavoriteList: (locationKey, data) => { dispatch(addToFavoriteList(locationKey, data)) },
     removeFromFavoriteList: (locationKey) => { dispatch(removeFromFavoriteList(locationKey)) },
+    fatchAllWeatherDataSaga: (dataLocation) => { dispatch(fatchAllWeatherDataSaga(dataLocation)) },
     fatchDefaultSaga: (quary) => { dispatch(fatchDefaultSaga(quary)) },
-  
-    fatchGeoSaga: () => { 
 
-      navigator.geolocation? 
-      navigator.geolocation.getCurrentPosition((p)=>
-      dispatch(fatchGeoSaga(p.coords.latitude+',' +p.coords.longitude)))
-      :dispatch(fetchDataFailure("navigate not suported"))
-   }
+    fatchGeoSaga: () => {
+
+      navigator.geolocation ?
+        navigator.geolocation.getCurrentPosition((p) =>
+          dispatch(fatchGeoSaga(p.coords.latitude + ',' + p.coords.longitude)))
+        : dispatch(fetchDataFailure("navigate not suported"))
+    }
   }
 }
 

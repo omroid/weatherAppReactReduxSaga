@@ -17,7 +17,14 @@ function searchComponent(props) {
                             </svg>
 
 
-                            <input className="txtSearch" type="text" value={props.txtSearch} onChange={(e) => { props.setSelectedDataIndex(-1); props.setTxtSearch(e.target.value) }} onKeyPress={(e) => props.fatchDataForAutoCompletionSaga(e.target.value)} />
+                            <input className="txtSearch" type="text" value={props.txtSearch} onChange={(e) => {
+                                const RegExpression = /^[a-zA-Z\s]*$/;
+                                if (e.target.value.match(RegExpression)) {
+                                    props.setSelectedDataIndex(-1);
+                                    props.setTxtSearch(e.target.value);
+                                    props.fatchDataForAutoCompletionSaga(e.target.value);
+                                }
+                            }}/>
                             <div className="btn-group dropdown">
                                 <button type="button" className="txtSearch dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
 
@@ -44,9 +51,10 @@ function searchComponent(props) {
                             </div>
                             <div><button type="button" className="btn" disabled={props.selectedDataIndex === -1 ? true : false}
                                 onClick={() => {
-                                    props.fatchDataNextFiveDaysSaga(props.dataAutoCompletion[props.selectedDataIndex].Key);
-                                    props.fatchDataCurrentDaySaga(props.dataAutoCompletion[props.selectedDataIndex].Key);
-                                    props.setDataLocation(props.dataAutoCompletion[props.selectedDataIndex]);
+                                    props.fatchAllWeatherDataSaga(props.dataAutoCompletion[props.selectedDataIndex])
+                                    // props.fatchDataNextFiveDaysSaga(props.dataAutoCompletion[props.selectedDataIndex].Key);
+                                    // props.fatchDataCurrentDaySaga(props.dataAutoCompletion[props.selectedDataIndex].Key);
+                                    // props.setDataLocation(props.dataAutoCompletion[props.selectedDataIndex]);
                                 }}>Search</button></div>
                             <div className="iconLocationDiv">
                                 <a className="locationIconA" onClick={()=>{props.fatchGeoSaga()}}>
