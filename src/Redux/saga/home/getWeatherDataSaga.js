@@ -4,7 +4,8 @@ import { fetchDataRequest, fetchDataSuccess, fetchDataFailure, setDataLocation }
 import { fatchDataNextFiveDaysSaga } from '../../Home/homeActions'
 import { fatchDataCurrentDaySaga } from '../../Home/homeActions'
 import {getCurrentWeatherSaga,getWeatherNextFiveDaysSaga  } from "./generatorsAllWeatherSaga";
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function* getWeatherDataSaga(action) {
     try {
@@ -16,7 +17,7 @@ function* getWeatherDataSaga(action) {
 
     }
     catch (errorMessage) {
-        console.log(errorMessage.message);
+        toast.error(errorMessage.message);
         yield put(fetchDataFailure(errorMessage))
     }
 }

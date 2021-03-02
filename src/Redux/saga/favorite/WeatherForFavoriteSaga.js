@@ -5,7 +5,8 @@ import {
 import { fetchDataFavoriteRequest, fetchDataFavoriteFailure, fetchDataFavoriteSuccess } from '../../Favorite/favoriteActions'
 import config from "../../../config/config.json";
 import axios from 'axios'
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
  function* getCurrentWeatherSaga(action) {
@@ -17,7 +18,7 @@ import axios from 'axios'
         yield put(fetchDataFavoriteSuccess({functionName: action.payload.functionName, value: response.data,key:action.payload.key }))
     }
     catch (errorMessage) {
-        console.log(errorMessage.message);
+        toast.error(errorMessage.message);
         yield put(fetchDataFavoriteFailure(errorMessage))
     }
 }

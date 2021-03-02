@@ -7,7 +7,8 @@ import { fatchDataCurrentDaySaga } from '../../Home/homeActions'
 import { setIsGeoOrDefult } from "../../Home/homeActions";
 import config from "../../../config/config.json";
 import {getCurrentWeatherSaga,getWeatherNextFiveDaysSaga  } from "./generatorsAllWeatherSaga";
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function* fatchGeoSaga(action) {
     try {
@@ -19,13 +20,24 @@ function* fatchGeoSaga(action) {
         const dataLocation = { functionName: "setDataLocation", value: response.data };
         const getCurrentWeatherSagaResponse = yield call(getCurrentWeatherSaga, fatchDataCurrentDaySaga(response.data.Key));
         const getWeatherNextFiveDaysSagaResponse = yield call(getWeatherNextFiveDaysSaga, fatchDataNextFiveDaysSaga(response.data.Key));
+       
+        if (getCurrentWeatherSagaResponse.errorMessage !== undefined) {
+            throw (getCurrentWeatherSagaResponse.errorMessage)
+        }
+ 
+        if (getWeatherNextFiveDaysSagaResponse.errorMessage !== undefined) {
+         throw (getWeatherNextFiveDaysSagaResponse.errorMessage)
+        }
         yield put(fetchDataSuccess([getCurrentWeatherSagaResponse, getWeatherNextFiveDaysSagaResponse, autocomplete, dataLocation]))
-        yield put (setIsGeoOrDefult(false))
+  
 
     }
     catch (errorMessage) {
-        console.log(errorMessage.message);
+        toast.error(errorMessage.message);
         yield put(fetchDataFailure(errorMessage))
+    }
+    finally{
+        yield put (setIsGeoOrDefult(false))
     }
 }
 

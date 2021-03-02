@@ -9,7 +9,7 @@ const sagaMiddlewere = createSagaMiddlewere();
 const store = createStore(rootReducer, applyMiddleware(logger,sagaMiddlewere));
 
 loadFromLocalStorage(store);
+
 store.subscribe(() => saveToLocalStorage(store.getState().Favorite.favoriteData));
-console.log(store.getState().Favorite.favoriteData);
 sagaMiddlewere.run(RootSaga);
 export default store

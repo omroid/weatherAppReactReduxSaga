@@ -12,8 +12,7 @@ export const getCurrentWeatherSaga = function* getCurrentWeatherSaga(action) {
         return { functionName: action.payload.functionName, value: response.data };
     }
     catch (errorMessage) {
-        console.log(errorMessage.message);
-        yield put(fetchDataFailure(errorMessage))
+        return {errorMessage:errorMessage}
     }
 }
 
@@ -25,7 +24,6 @@ export const getWeatherNextFiveDaysSaga = function* getWeatherNextFiveDaysSaga(a
         return { functionName: action.payload.functionName, value: response.data };
     }
     catch (errorMessage) {
-        console.log(errorMessage.message);
-        yield put(fetchDataFailure(errorMessage))
+        return {errorMessage:errorMessage}
     }
 }

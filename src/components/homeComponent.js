@@ -18,11 +18,9 @@ import { fetchDataFailure } from '../Redux/Home/homeActions';
 import { fatchAllWeatherDataSaga } from "../Redux/index";
 
 
-
 class homeComponent extends Component {
   constructor(props) {
     super(props);
-
   }
 
 
@@ -34,11 +32,16 @@ class homeComponent extends Component {
       this.props.setIsLoadFirstTime();
     }
 
+
+
+
   }
 
   render() {
     return (
+
       <div>
+     
         <SearchView txtSearch={this.props.txtSearch} setTxtSearch={this.props.setTxtSearch} fatchDataForAutoCompletionSaga={this.props.fatchDataForAutoCompletionSaga}
           setSelectedDataIndex={this.props.setSelectedDataIndex} dataAutoCompletion={this.props.dataAutoCompletion} selectedDataIndex={this.props.selectedDataIndex}
           fatchDataCurrentDaySaga={this.props.fatchDataCurrentDaySaga} fatchDataNextFiveDaysSaga={this.props.fatchDataNextFiveDaysSaga} setDataLocation={this.props.setDataLocation}
@@ -46,14 +49,14 @@ class homeComponent extends Component {
         />
 
         {
-          (this.props.isLoading === true) && ((this.props.selectedDataIndex !== -1)||this.props.isGeoOrDefult===true)? <Loading /> :
+          (this.props.isLoading === true) && ((this.props.selectedDataIndex !== -1) || this.props.isGeoOrDefult === true) ? <Loading /> :
             this.props.dataLocation != null &&
               this.props.dataFiveDaysWeather != null &&
               this.props.dataCurrentDay != null
               ?
               <WeatherView dataFiveDaysWeather={this.props.dataFiveDaysWeather} dataLocation={this.props.dataLocation} dataCurrentDay={this.props.dataCurrentDay}
                 favoriteData={this.props.favoriteData} addToFavoriteList={this.props.addToFavoriteList} removeFromFavoriteList={this.props.removeFromFavoriteList}
-              />:<></>
+              /> : <></>
         }
 
       </div>
@@ -74,7 +77,7 @@ const mapStateToProps = state => {
     isLoading: state.Home.loading,
     inProcess: state.Home.inProcess,
     favoriteData: { ...state.Favorite.favoriteData },
-    isGeoOrDefult:state.Home.isGeoOrDefult
+    isGeoOrDefult: state.Home.isGeoOrDefult
   }
 }
 

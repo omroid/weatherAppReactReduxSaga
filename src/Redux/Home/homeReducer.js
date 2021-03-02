@@ -23,7 +23,8 @@ const reducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                loading: true
+                loading: true,
+                error: ''
 
             }
         case FETCH_DATA_SUCCESS:
@@ -53,24 +54,29 @@ const reducer = (state = initialState, action) => {
         case SET_IS_LAODED_FIRST_TIME:
             return {
                 ...state,
-                isLoadFirstTime: true
+                isLoadFirstTime: true,
+                error: ''
             }
 
         case SET_DATA_SEARCH:
             return {
                 ...state,
-                txtSearch: action.payload
+                txtSearch: action.payload,
+                error: ''
             }
 
         case SET_SELECTED_DATA_INDEX:
             return {
                 ...state,
-                selectedDataIndex: action.payload
+                selectedDataIndex: action.payload,
+                error: ''
+
             }
             case SET_IS_GEO_OR_DEFULT:
                 return {
                     ...state,
-                    isGeoOrDefult: action.payload
+                    isGeoOrDefult: action.payload,
+                    error: ''
                 }
                 
             
