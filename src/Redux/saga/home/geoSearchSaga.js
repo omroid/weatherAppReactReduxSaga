@@ -14,7 +14,7 @@ function* fatchGeoSaga(action) {
     try {
         yield put (setIsGeoOrDefult(true))
         yield put(fetchDataRequest(action.payload.functionName))
-        const url = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?q=" + action.payload.value + "&apikey=" + config.apiKey;
+        const url = "https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?q=" + action.payload.value + "&apikey=" + config.apiKey;
         const response = yield call(() => axios.get(url))
         const autocomplete = { functionName: action.payload.functionName, value: response.data };
         const dataLocation = { functionName: "setDataLocation", value: response.data };
