@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/weatherAppReactReduxSaga/static/css/main.946a17c8.chunk.css",
-    "main.js": "/weatherAppReactReduxSaga/static/js/main.b0e301e9.chunk.js",
-    "main.js.map": "/weatherAppReactReduxSaga/static/js/main.b0e301e9.chunk.js.map",
+    "main.js": "/weatherAppReactReduxSaga/static/js/main.d864fa8b.chunk.js",
+    "main.js.map": "/weatherAppReactReduxSaga/static/js/main.d864fa8b.chunk.js.map",
     "runtime-main.js": "/weatherAppReactReduxSaga/static/js/runtime-main.2bc387cf.js",
     "runtime-main.js.map": "/weatherAppReactReduxSaga/static/js/runtime-main.2bc387cf.js.map",
     "static/css/2.ffda3d49.chunk.css": "/weatherAppReactReduxSaga/static/css/2.ffda3d49.chunk.css",
@@ -19,6 +19,6 @@
     "static/css/2.ffda3d49.chunk.css",
     "static/js/2.55aa1b3b.chunk.js",
     "static/css/main.946a17c8.chunk.css",
-    "static/js/main.b0e301e9.chunk.js"
+    "static/js/main.d864fa8b.chunk.js"
   ]
 }
