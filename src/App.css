@@ -60,7 +60,7 @@ body {
   border: none;
   outline: none;
   background: transparent;
-  width: 80%;
+  width: 100%;
 }
 
 .icon-glass {
@@ -140,6 +140,13 @@ body {
 
 .locationIconA:hover {
   opacity: 0.6;
+}
+.dropdown{
+  width: 100%;
+}
+
+.dropdown-menu{
+  width: 100%;
 }
 
 .switch {

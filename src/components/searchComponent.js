@@ -17,7 +17,10 @@ function searchComponent(props) {
                             </svg>
 
 
-                            <input className="txtSearch" type="text" value={props.txtSearch} onChange={(e) => {
+                        
+                            <div className="btn-group dropdown" >
+
+                            <input className="txtSearch dropdown-toggle" type="text" aria-haspopup="true" aria-expanded="false" value={props.txtSearch} onChange={(e) => {
                                 const RegExpression = /^[a-zA-Z\s]*$/;
                                 if (e.target.value.match(RegExpression)) {
                                     props.setSelectedDataIndex(-1);
@@ -25,10 +28,7 @@ function searchComponent(props) {
                                     props.fatchDataForAutoCompletionSaga(e.target.value);
                                 }
                             }}/>
-                            <div className="btn-group dropdown">
-                                <button type="button" className="txtSearch dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-
-                                </button>
+        
                                 <div className={props.selectedDataIndex === -1 && props.txtSearch!=""? 'dropdown-menu show' : 'dropdown-menu'}>
 
                                     {

@@ -19,7 +19,6 @@ class App extends Component {
         <Header setIsFavoritePage={this.props.setIsFavoritePage} isHomePage={this.props.isFavorotePage} />
         {this.props.isFavoritePage===false?<div className="homePageDiv"><Home />
       </div>:<div className="favoritePageDiv"><Favorite/></div>}
-      {/* <WeatherView dataFiveDaysWeather={dataFiveDaysWeather} dataLocation={dataLocation[0]} dataCurrentDay={dataCurrentWeather[0]}  /> */}
       <ToastContainer />
       </div>
 
